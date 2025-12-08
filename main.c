@@ -16,7 +16,6 @@ int main (int argc, char *argv[]) {
             continue;
         }
         
-        // Validar que haya libros para las opciones 2-5
         if(opc >= 2 && opc <= 5 && cont == 0){
             printf("\nError: No hay libros registrados. Primero debe agregar libros (Opcion 1).\n\n");
             continue;
@@ -89,7 +88,6 @@ int main (int argc, char *argv[]) {
                             LeerCadena(tituloBuscar, 50);
                             ConvertirAMinusculas(tituloBuscar);
                             
-                            // Buscar por titulo manualmente
                             int encontrado = 0;
                             printf("\n========== BUSCANDO LIBRO ==========\n");
                             for(int i = 0; i < cont; i++){
@@ -137,7 +135,6 @@ int main (int argc, char *argv[]) {
                         printf("Ingrese el ID del libro a modificar: ");
                         idModificar = LeerEntero();
                         
-                        // Buscar el libro
                         int indice = -1;
                         for(int i = 0; i < cont; i++){
                             if((libros + i)->id == idModificar){
@@ -245,7 +242,6 @@ int main (int argc, char *argv[]) {
                         printf("Ingrese el ID del libro a eliminar: ");
                         idEliminar = LeerEntero();
                         
-                        // Buscar el libro para mostrar sus datos
                         int indiceEliminar = -1;
                         for(int i = 0; i < cont; i++){
                             if((libros + i)->id == idEliminar){
@@ -299,4 +295,5 @@ int main (int argc, char *argv[]) {
     
 
     return 0;
+
 }
