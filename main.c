@@ -16,6 +16,7 @@ int main (int argc, char *argv[]) {
             continue;
         }
         
+        // Validar que haya libros para las opciones 2-5
         if(opc >= 2 && opc <= 5 && cont == 0){
             printf("\nError: No hay libros registrados. Primero debe agregar libros (Opcion 1).\n\n");
             continue;
@@ -36,6 +37,10 @@ int main (int argc, char *argv[]) {
                             printf("\n====== AGREGAR LIBRO %d de %d ======\n", i + 1, cantidadAgregar);
                             printf("Ingrese el ID del libro: ");
                             libros[cont].id = LeerEntero();
+                            while(IdExiste(&libros[0], cont, libros[cont].id)){
+                                printf("Error: El ID %d ya existe. Debe ingresar un ID diferente: ", libros[cont].id);
+                                libros[cont].id = LeerEntero();
+                            }
                             
                             printf("Ingrese el titulo del libro: ");
                             LeerCadena(libros[cont].titulo, 50);
@@ -88,6 +93,7 @@ int main (int argc, char *argv[]) {
                             LeerCadena(tituloBuscar, 50);
                             ConvertirAMinusculas(tituloBuscar);
                             
+                            // Buscar por titulo manualmente
                             int encontrado = 0;
                             printf("\n========== BUSCANDO LIBRO ==========\n");
                             for(int i = 0; i < cont; i++){
@@ -135,6 +141,7 @@ int main (int argc, char *argv[]) {
                         printf("Ingrese el ID del libro a modificar: ");
                         idModificar = LeerEntero();
                         
+                        // Buscar el libro
                         int indice = -1;
                         for(int i = 0; i < cont; i++){
                             if((libros + i)->id == idModificar){
@@ -191,6 +198,10 @@ int main (int argc, char *argv[]) {
                                         int nuevoID;
                                         printf("Ingrese el nuevo ID: ");
                                         nuevoID = LeerEntero();
+                                        while(IdExiste(&libros[0], cont, nuevoID) && nuevoID != (libros + indice)->id){
+                                            printf("Error: El ID %d ya existe. Debe ingresar un ID diferente: ", nuevoID);
+                                            nuevoID = LeerEntero();
+                                        }
                                         (libros + indice)->id = nuevoID;
                                         printf("ID modificado exitosamente.\n");
                                     }
@@ -242,6 +253,7 @@ int main (int argc, char *argv[]) {
                         printf("Ingrese el ID del libro a eliminar: ");
                         idEliminar = LeerEntero();
                         
+                        // Buscar el libro para mostrar sus datos
                         int indiceEliminar = -1;
                         for(int i = 0; i < cont; i++){
                             if((libros + i)->id == idEliminar){
@@ -295,5 +307,5 @@ int main (int argc, char *argv[]) {
     
 
     return 0;
-
 }
+
