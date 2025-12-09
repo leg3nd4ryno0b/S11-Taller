@@ -33,16 +33,16 @@ int LeerEntero(){
     while(1){
         resultado = scanf("%d", &numero);
         if(resultado != 1){
-
+            // Limpiar buffer si hay caracteres inválidos
             int c;
             while((c = getchar()) != '\n' && c != EOF);
             printf("Error: Ingrese un numero valido: ");
         } else if(numero < 0){
-
+            // Limpiar el buffer de entrada
             while(getchar() != '\n');
             printf("Error: No se permiten numeros negativos. Ingrese un numero positivo: ");
         } else {
-
+            // Limpiar el buffer de entrada
             while(getchar() != '\n');
             break;
         }
@@ -109,7 +109,7 @@ void BuscarLibro(struct Libro *libros, int cantidad, int criterioTipo, int crite
     printf("\n========== BUSCANDO LIBRO ==========");
     for(int i = 0; i < cantidad; i++){
         int coincide = 0;
-        if(criterioTipo == 2){ 
+        if(criterioTipo == 2){ // Buscar por ID
             coincide = (libros + i)->id == criterio;
         }
         
@@ -156,5 +156,14 @@ void eliminarLibro(struct Libro *libros, int *cantidad, int id){
     }
     printf("\nLibro con ID %d no encontrado.\n", id);
     printf("=================================\n\n");
-
 }
+
+int IdExiste(struct Libro *libros, int cantidad, int id){
+    for(int i = 0; i < cantidad; i++){
+        if((libros + i)->id == id){
+            return 1;
+        }
+    }
+    return 0;
+}
+
