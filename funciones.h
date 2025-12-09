@@ -22,4 +22,8 @@ void MostrarTablaLibros(struct Libro *libros, int cantidad);
 void BuscarLibro(struct Libro *libros, int cantidad, int criterioTipo, int criterio);
 void ModificarEstadoLibro(struct Libro *libros, int cantidad, int id, const char *nuevoEstado);
 void eliminarLibro(struct Libro *libros, int *cantidad, int id);
+int IdExiste(struct Libro *libros, int cantidad, int id);
+
+
+
 
